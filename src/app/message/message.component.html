@@ -22,9 +22,15 @@
   <h4 style="color: darkred">No message yet!</h4>
 </div>
 
+
 <div align="center">
-    <h4>{{messages?.length}} Latest messages shown</h4>
-    <h4 *ngFor="let message of messages"> - {{convertMessage(message.message)}}</h4>
-  </div>
 
-
+<table class = "striped bordered">
+  <tbody align="center">
+  <tr>
+    {{messages?.length}} Latest messages:
+  </tr>
+  <tr><h5 *ngFor="let message of messages"> - {{convertMessage(message.message)}}</h5></tr>
+  </tbody>
+</table>
+</div>
