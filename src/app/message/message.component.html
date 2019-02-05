@@ -1,0 +1,30 @@
+
+
+<div text align="center">
+<img align="center" alt="Angular Logo" src="https://cdn.history101.com/wp-content/uploads/2018/05/morse-1024x682.jpg">
+</div>
+
+<div text align="center">
+  <button  mz-button class="red" (mousedown)="morse(true);"(mouseup)="morse(false);">MORSE</button>
+  <button mz-button class="red" (click)="next();"> Next </button>
+  <button mz-button class="red"(click)="space();"> Space </button>
+  <button mz-button class="red"(click)="clear();"> Clear </button>
+  <button mz-button class="btn waves-effect waves-light red" [disabled]="!message" (click)="send()">Send Message</button>
+</div>
+
+<div text align="center" *ngIf="message">
+  <h1 >{{message}}</h1>
+  <h2> {{convertMessage(humanReadableMessage)}} </h2>
+</div>
+
+
+<div text align="center" *ngIf="!message">
+  <h4 style="color: darkred">No message yet!</h4>
+</div>
+
+<div text align="center">
+    <h4>{{messages?.length}} Latest messages shown</h4>
+    <h4 *ngFor="let message of messages">{{message.time}} - {{convertMessage(message.message)}}</h4>
+  </div>
+
+
