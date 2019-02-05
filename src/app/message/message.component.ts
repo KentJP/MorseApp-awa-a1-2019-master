@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MessageService} from './shared/message.service';
+import {Observable} from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-message',
@@ -8,12 +9,16 @@ import {MessageService} from './shared/message.service';
 })
 export class MessageComponent implements OnInit {
 
-  constructor(private messageService: MessageService) { }
   message = '';
   messages: any[];
   time: number;
   humanReadableMessage = '';
   latest: any;
+  constructor(private messageService: MessageService) {this.messageService.getMessagesLastByLimit(5).subscribe(messages => {
+    this.messages = messages;
+    this.latest = messages[0];
+  }); }
+
 
   ngOnInit() {
   }
