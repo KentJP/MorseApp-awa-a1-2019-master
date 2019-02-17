@@ -20,7 +20,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
   declarations: [
     AppComponent,
     MessageComponent,
-    WelcomeComponent
+    WelcomeComponent,
+
   ],
   imports: [
     BrowserModule,
