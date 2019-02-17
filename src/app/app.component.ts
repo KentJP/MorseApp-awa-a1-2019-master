@@ -8,7 +8,7 @@ import {Observable} from 'rxjs/internal/Observable';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Morse App';
+  title = 'Sindssyg App';
   messages: any[];
   messagesPaged: Observable<any[]>;
   latest: any;

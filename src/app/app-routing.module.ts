@@ -7,9 +7,24 @@ import {WelcomeComponent} from './welcome/welcome.component';
 
 
 const routes: Routes = [
-  { path: 'message', component: MessageComponent},
-  {path: 'x', component: AppComponent},
-  {path: '', component: WelcomeComponent }]
+
+  {
+    path: 'customers',
+    loadChildren: './customers/customers.module#CustomersModule'
+  },
+  {
+    path: 'orders',
+    loadChildren: './orders/orders.module#OrdersModule'
+  },
+  {
+    path: 'products',
+    loadChildren: './product/product-module#ProductModule'
+  },
+  {
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full'
+  }]
 
 // @ts-ignore
 @NgModule({
