@@ -17,6 +17,6 @@ export class OrderListComponent implements OnInit {
     this.orders = this.orderService.getOrders();
   }
   deleteOrder(order: order){
-    this.orderService.deleteOrder(order.id);
+    this.orderService.deleteOrder(order.id).then(()=>{window.alert('Order was deleted')})
   }
 }

@@ -18,7 +18,7 @@ export class CustomerListComponent implements OnInit {
   }
 
   deleteCustomer(customer: customer){
-    this.cusservice.deleteCustomer(customer.id)
+    this.cusservice.deleteCustomer(customer.id).then(()=>{window.alert('Customer was deleted')})
 
 
 

@@ -25,8 +25,8 @@ return this.db.collection<Product>('Products').snapshotChanges()
       );
 }
 
-  deleteProduct(id: string){
-    this.db.doc<Product>('Products/' +id)
+  deleteProduct(id: string): Promise<void> {
+     return this.db.doc<Product>('Products/' +id)
       .delete();
 }
 }

@@ -11,8 +11,8 @@ export class CustomerService {
 
   constructor(private db: AngularFirestore) { }
 
-  deleteCustomer(id: string){
-    this.db.doc<customer>('Customers/' +id)
+  deleteCustomer(id: string): Promise<void>{
+    return this.db.doc<customer>('Customers/' +id)
       .delete();
 
   }

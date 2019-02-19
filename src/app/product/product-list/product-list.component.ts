@@ -18,6 +18,6 @@ export class ProductListComponent implements OnInit{
   }
 
 deleteProduct(product: Product){
-    this.productservice.deleteProduct(product.id)
+    this.productservice.deleteProduct(product.id).then(()=>{window.alert('Product was deleted')})
 }
 }

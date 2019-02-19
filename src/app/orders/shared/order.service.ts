@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/internal/Observable';
 import {Product} from '../../product/shared/product.model';
 import {map} from 'rxjs/operators';
 import {order} from './order.model';
+import {promise} from 'selenium-webdriver';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,8 @@ export class OrderService {
       );
   }
 
-  deleteOrder(id: string){
-    this.db.doc<order>('Orders/' +id)
+  deleteOrder(id: string): Promise<void>{
+    return this.db.doc<order>('Orders/' +id)
       .delete();
   }
 }

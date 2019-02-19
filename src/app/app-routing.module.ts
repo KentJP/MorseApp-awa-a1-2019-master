@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {Router, RouterModule, Routes} from '@angular/router';
 import {MessageComponent} from './message/message.component';
 import {AppComponent} from './app.component';
-import {WelcomeComponent} from './welcome/welcome.component';
+
 
 
 const routes: Routes = [
@@ -19,6 +19,9 @@ const routes: Routes = [
   {
     path: 'products',
     loadChildren: './product/product-module#ProductModule'
+  },{
+    path: '',
+    loadChildren: './home/home.module#HomeModule'
   },
   {
     path: '',
