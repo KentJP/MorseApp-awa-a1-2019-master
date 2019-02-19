@@ -1,5 +1,11 @@
 <ul>
  <li class="text" *ngFor="let product of products | async">
-   {{product.name}}
+   {{product.name}} -- {{product.id}}
+   <button (click)="deleteProduct(product)">Delete Product</button>
  </li>
 </ul>
+<div class = "card-panel">
+
+
+
+</div>

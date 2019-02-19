@@ -9,7 +9,7 @@ import {MessageService} from './message/shared/message.service';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { MessageComponent } from './message/message.component';
-import {MzButtonModule, MzTextareaModule} from 'ngx-materialize';
+import {MzButtonModule, MzNavbarModule, MzTextareaModule} from 'ngx-materialize';
 import { AppRoutingModule } from './app-routing.module';
 import {RouterModule, Routes} from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -32,6 +32,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     MzButtonModule,
     MzTextareaModule,
     AppRoutingModule,
+    MzNavbarModule
 
 
 

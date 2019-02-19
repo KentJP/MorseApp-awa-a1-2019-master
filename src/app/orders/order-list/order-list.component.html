@@ -1,3 +1,11 @@
-<p>
-  order-list works!
-</p>
+<ul>
+  <li class="text" *ngFor="let order of orders | async">
+    {{order.name}} -- {{order.id}}
+    <button (click)="deleteOrder(order)">Delete Order</button>
+  </li>
+</ul>
+<div class = "card-panel">
+
+
+
+</div>

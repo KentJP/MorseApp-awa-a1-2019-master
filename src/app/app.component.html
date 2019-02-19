@@ -1,13 +1,16 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
-<h1>
-  {{title}}
-</h1>
 
-<button routerLink="/customers">Customers</button>
-<button routerLink="/orders">Orders</button>
-<button routerLink="/products">Products</button>
-<button routerLink="">Home</button>
+<mz-navbar  [navbarClass]="'grey darken-1'">
+  <a href="#" class="brand-logo center" style="font-family: 'Allerta Stencil', Sans-serif, serif;">Kennys Customer App</a>
+  <mz-navbar-item-container [align]="'left'">
+    <mz-navbar-item  ><a href="">Home</a></mz-navbar-item>
+    <mz-navbar-item  ><a href="/customers">Customers</a></mz-navbar-item>
+    <mz-navbar-item  ><a href="/orders">Orders</a></mz-navbar-item>
+    <mz-navbar-item  ><a href="/products">Products</a></mz-navbar-item>
+
+  </mz-navbar-item-container>
+</mz-navbar>
 
 <router-outlet></router-outlet>
 

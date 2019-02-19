@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs/internal/Observable';
+import {Product} from '../../product/shared/product.model';
+import {order} from '../shared/order.model';
+import {OrderService} from '../shared/order.service';
 
 @Component({
   selector: 'app-order-list',
@@ -6,10 +10,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements OnInit {
-
-  constructor() { }
+  orders: Observable<order[]>;
+  constructor(private orderService: OrderService) { }
 
   ngOnInit() {
+    this.orders = this.orderService.getOrders();
   }
-
+  deleteOrder(order: order){
+    this.orderService.deleteOrder(order.id);
+  }
 }
