@@ -4,8 +4,13 @@
    <button (click)="deleteProduct(product)">Delete Product</button>
  </li>
 </ul>
-<div class = "card-panel">
 
+<form [formGroup]="productFormGroup" (ngSubmit)="addProduct()">
 
+  <label>
+    Product Name:
+    <input type="text" formControlName="name">
+  </label>
+  <button type="submit">Add</button>
+</form>
 
-</div>

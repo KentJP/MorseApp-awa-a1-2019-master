@@ -13,6 +13,7 @@ import {MzButtonModule, MzNavbarModule, MzParallaxModule, MzTextareaModule} from
 import { AppRoutingModule } from './app-routing.module';
 import {RouterModule, Routes} from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 
 
@@ -33,7 +34,10 @@ import { WelcomeComponent } from './welcome/welcome.component';
     MzTextareaModule,
     AppRoutingModule,
     MzNavbarModule,
-    MzParallaxModule
+    MzParallaxModule,
+
+
+
 
 
 

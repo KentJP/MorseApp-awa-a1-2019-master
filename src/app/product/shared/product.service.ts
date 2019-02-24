@@ -3,6 +3,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs/internal/Observable';
 import {Product} from './product.model';
 import {map} from 'rxjs/operators';
+import {from} from 'rxjs/internal/observable/from';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,22 @@ return this.db.collection<Product>('Products').snapshotChanges()
      return this.db.doc<Product>('Products/' +id)
       .delete();
 }
+
+  addProduct(product: Product): Observable<Product> {
+    return from(
+      this.db.collection('Products').add(
+        {
+          name: product.name,
+        }
+      )
+    ).pipe(
+      map(productRef => {
+        product.id = productRef.id;
+        return product;
+      })
+    );
+
+
+  }
 }
 

@@ -1,11 +1,9 @@
-<ul>
-  <li class="text" *ngFor="let order of orders | async">
+
+<div fxLayout="column" fxLayoutAlign="center" >
+  <h4>List of Orders</h4>
+  <td class="text" *ngFor="let order of orders | async">
     {{order.name}} -- {{order.id}}
-    <button (click)="deleteOrder(order)">Delete Order</button>
-  </li>
-</ul>
-<div class = "card-panel">
-
-
+    <button (click)="deleteOrder()">Delete Order</button>
 
 </div>
+
