@@ -25,6 +25,10 @@ deleteProduct(product: Product){
 
 addProduct(){
     const productData = this.productFormGroup.value;
-    this.productservice.addProduct(productData)
+    this.productservice.addProduct(productData).subscribe(product=>{window.alert('Product succesfully added!')});
+}
+
+uploadFile(event){
+    const file = event.target.files[0];
 }
 }

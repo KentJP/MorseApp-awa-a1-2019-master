@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {RouterModule, Routes} from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {AngularFireStorageModule} from '@angular/fire/storage';
 
 
 
@@ -35,6 +36,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     AppRoutingModule,
     MzNavbarModule,
     MzParallaxModule,
+    AngularFireStorageModule
 
 
 

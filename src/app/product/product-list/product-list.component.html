@@ -1,9 +1,25 @@
-<ul>
- <li class="text" *ngFor="let product of products | async">
-   {{product.name}} -- {{product.id}}
-   <button (click)="deleteProduct(product)">Delete Product</button>
- </li>
-</ul>
+<div class="row">
+  <div *ngFor="let product of products | async" class="col s3">
+    <mz-card
+
+      [horizontal]="true">
+
+      <mz-card-title>
+        {{product.name}}
+      </mz-card-title>
+      <mz-card-content>
+        Very good coffee, much expensive
+      </mz-card-content>
+      <mz-card-action>
+        <button mz-button float="true" (click)="deleteProduct(product)" style="background-color: red">
+          <i mz-icon-mdi [icon]="'delete'"></i>
+        </button>
+        <input class="filechooser" type="file" (change)="uploadFile($event)">
+
+      </mz-card-action>
+    </mz-card>
+  </div>
+</div>
 
 <form [formGroup]="productFormGroup" (ngSubmit)="addProduct()">
 
@@ -11,6 +27,12 @@
     Product Name:
     <input type="text" formControlName="name">
   </label>
-  <button type="submit">Add</button>
+  <button mz-button style="background-color: limegreen">
+    <i mz-icon-mdi [icon]="'cart-plus'"></i>
+  </button>
+
+
+
 </form>
+
 
