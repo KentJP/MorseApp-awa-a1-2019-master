@@ -3,5 +3,5 @@ export interface FileMeta {
   name: string;
   type: string;
   size: number;
-  changed: Date;
+  lastModified?: number;
 }

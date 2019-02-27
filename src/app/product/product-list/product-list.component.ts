@@ -4,6 +4,8 @@ import {ProductService} from '../shared/product.service';
 import {Product} from '../shared/product.model';
 import {Subscription} from 'rxjs/internal/Subscription';
 import {FormControl, FormGroup} from '@angular/forms';
+import {FileService} from '../../files/shared/file.service';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-list',
@@ -13,7 +15,8 @@ import {FormControl, FormGroup} from '@angular/forms';
 export class ProductListComponent implements OnInit{
   productFormGroup: FormGroup;
   products: Observable<Product[]>;
-  constructor(private productservice: ProductService) {this.productFormGroup = new FormGroup({name: new FormControl()}) }
+  fileToUpload: File;
+  constructor(private productservice: ProductService, private fileservice: FileService) {this.productFormGroup = new FormGroup({name: new FormControl()}) }
 
   ngOnInit() {
     this.products = this.productservice.getProducts();
@@ -24,11 +27,24 @@ deleteProduct(product: Product){
 }
 
 addProduct(){
-    const productData = this.productFormGroup.value;
-    this.productservice.addProduct(productData).subscribe(product=>{window.alert('Product succesfully added!')});
+  const productData = this.productFormGroup.value;
+    if (this.fileToUpload){
+      this.fileservice.upload(this.fileToUpload)
+        .pipe(
+          switchMap(metadata=>{debugger;
+            productData.pictureId = metadata.id;
+            return  this.productservice.addProduct(productData);
+
+          } )
+
+        )
+        .subscribe(product=>{window.alert('Product succesfully added!')}, error1 => {debugger;});
+    }
+
 }
 
 uploadFile(event){
-    const file = event.target.files[0];
+    this.fileToUpload = event.target.files[0];
+
 }
 }

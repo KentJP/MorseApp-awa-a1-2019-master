@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style="margin: 40px">
   <div *ngFor="let product of products | async" class="col s3">
     <mz-card
 
@@ -6,6 +6,7 @@
 
       <mz-card-title>
         {{product.name}}
+        {{product.pictureId}}
       </mz-card-title>
       <mz-card-content>
         Very good coffee, much expensive
@@ -14,7 +15,7 @@
         <button mz-button float="true" (click)="deleteProduct(product)" style="background-color: red">
           <i mz-icon-mdi [icon]="'delete'"></i>
         </button>
-        <input class="filechooser" type="file" (change)="uploadFile($event)">
+
 
       </mz-card-action>
     </mz-card>
@@ -27,9 +28,11 @@
     Product Name:
     <input type="text" formControlName="name">
   </label>
+
   <button mz-button style="background-color: limegreen">
     <i mz-icon-mdi [icon]="'cart-plus'"></i>
   </button>
+  <input class="filechooser" type="file" (change)="uploadFile($event)">
 
 
 

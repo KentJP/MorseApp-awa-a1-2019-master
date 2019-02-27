@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs/internal/Observable';
 import {Product} from './product.model';
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {from} from 'rxjs/internal/observable/from';
+import {throwError} from 'rxjs/internal/observable/throwError';
 
 @Injectable({
   providedIn: 'root'
@@ -31,16 +32,26 @@ return this.db.collection<Product>('Products').snapshotChanges()
       .delete();
 }
 
-  addProduct(product: Product): Observable<Product> {
-    return from(
-      this.db.collection('Products').add(
+  addProduct(product: Product): Observable<Product> {debugger;
+    return Observable.create( obs =>
+      this.db.collection<Product>('Products').add(
         {
           name: product.name,
+          pictureId: product.pictureId
         }
-      )
+      ).then(data => {obs.next(data);
+      })
+        .catch(err => obs.error(err))
     ).pipe(
+      catchError(error => {
+        if (error.status === 401 || error.status === 403) {
+          // handle error
+        }
+        return throwError(error);
+      }),
       map(productRef => {
-        product.id = productRef.id;
+        debugger;
+        //product.id = productRef.id;
         return product;
       })
     );
