@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {Observable} from 'rxjs/internal/Observable';
+import {Observable} from 'rxjs';
 import {Product} from './product.model';
 import {catchError, map} from 'rxjs/operators';
 import {from} from 'rxjs/internal/observable/from';
-import {throwError} from 'rxjs/internal/observable/throwError';
+import {throwError} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import{FileMeta} from './file-meta';
-import {Observable} from 'rxjs/internal/Observable';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {from} from 'rxjs/internal/observable/from';
 import {catchError, finalize, first, map, switchMap} from 'rxjs/operators';
-import {defer} from 'rxjs/internal/observable/defer';
-import {throwError} from 'rxjs/internal/observable/throwError';
+import {defer, from, Observable} from 'rxjs';
 
 
 @Injectable({
