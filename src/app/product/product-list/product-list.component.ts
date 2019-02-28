@@ -31,14 +31,14 @@ addProduct(){
     if (this.fileToUpload){
       this.fileservice.upload(this.fileToUpload)
         .pipe(
-          switchMap(metadata=>{debugger;
+          switchMap(metadata=>{
             productData.pictureId = metadata.id;
             return  this.productservice.addProduct(productData);
 
           } )
 
         )
-        .subscribe(product=>{window.alert('Product succesfully added!')}, error1 => {debugger;});
+        .subscribe(product=>{window.alert('Product succesfully added!')}, error1 => {'Failed to add product'});
     }
 
 }

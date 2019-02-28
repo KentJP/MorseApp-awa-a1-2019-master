@@ -40,7 +40,6 @@ export class FileService {
 
 
   addFileMetadata(meta: FileMeta): Observable<FileMeta> {
-    debugger;
     return defer(() =>
       this.db.collection('Files')
         .add(meta)

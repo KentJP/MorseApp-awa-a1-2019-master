@@ -32,7 +32,7 @@ return this.db.collection<Product>('Products').snapshotChanges()
       .delete();
 }
 
-  addProduct(product: Product): Observable<Product> {debugger;
+  addProduct(product: Product): Observable<Product> {
     return Observable.create( obs =>
       this.db.collection<Product>('Products').add(
         {
@@ -50,7 +50,6 @@ return this.db.collection<Product>('Products').snapshotChanges()
         return throwError(error);
       }),
       map(productRef => {
-        debugger;
         //product.id = productRef.id;
         return product;
       })
