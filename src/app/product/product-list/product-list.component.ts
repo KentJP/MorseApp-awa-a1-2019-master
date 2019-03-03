@@ -5,7 +5,8 @@ import {Product} from '../shared/product.model';
 import {Subscription} from 'rxjs';
 import {FormControl, FormGroup} from '@angular/forms';
 import {FileService} from '../../files/shared/file.service';
-import {switchMap} from 'rxjs/operators';
+import {switchMap, tap} from 'rxjs/operators';
+import {ImageCroppedEvent} from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-product-list',
@@ -16,10 +17,24 @@ export class ProductListComponent implements OnInit{
   productFormGroup: FormGroup;
   products: Observable<Product[]>;
   fileToUpload: File;
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
   constructor(private productservice: ProductService, private fileservice: FileService) {this.productFormGroup = new FormGroup({name: new FormControl()}) }
 
   ngOnInit() {
-    this.products = this.productservice.getProducts();
+    this.products = this.productservice.getProducts()
+      .pipe(
+        tap(products => {
+          products.forEach(product => {
+            if (product.pictureId) {
+              this.fileservice.getFileUrl(product.pictureId)
+                .subscribe(url => {
+                  product.url = url;
+                });
+            }
+          });
+        })
+      );
   }
 
 deleteProduct(product: Product){
@@ -44,7 +59,15 @@ addProduct(){
 }
 
 uploadFile(event){
-    this.fileToUpload = event.target.files[0];
+    this.imageChangedEvent = event;
+  this.fileToUpload = event.target.files[0];
+
 
 }
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+    const fileBeforeCrop = this.imageChangedEvent.target.files[0];
+    this.fileToUpload = new File([event.file], fileBeforeCrop.name,{type: fileBeforeCrop.type})
+
+  }
 }

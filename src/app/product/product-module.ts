@@ -7,6 +7,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {AngularFireStorage, AngularFireStorageModule} from '@angular/fire/storage';
 import {FilesModule} from '../files/files.module';
 import {MzButtonModule, MzCardModule, MzIconMdiModule, MzIconModule, MzInputModule} from 'ngx-materialize';
+import {ImageCropperModule} from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [ProductListComponent],
@@ -20,7 +21,8 @@ import {MzButtonModule, MzCardModule, MzIconMdiModule, MzIconModule, MzInputModu
     MzButtonModule,
     MzIconModule,
     MzIconMdiModule,
-    MzInputModule
+    MzInputModule,
+    ImageCropperModule
   ]
 })
 export class ProductModule { }

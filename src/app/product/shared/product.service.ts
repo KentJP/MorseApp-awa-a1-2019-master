@@ -3,7 +3,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 import {Product} from './product.model';
 import {catchError, map} from 'rxjs/operators';
-import {from} from 'rxjs/internal/observable/from';
+import {from} from 'rxjs';
 import {throwError} from 'rxjs';
 
 @Injectable({
@@ -20,7 +20,7 @@ return this.db.collection<Product>('Products').snapshotChanges()
         return actions.map(action => {
           const data = action.payload.doc.data() as Product
           {
-            return {id: action.payload.doc.id, name: data.name};
+            return {id: action.payload.doc.id, name: data.name, pictureId: data.pictureId};
           }
         });
       })
@@ -33,29 +33,21 @@ return this.db.collection<Product>('Products').snapshotChanges()
 }
 
   addProduct(product: Product): Observable<Product> {
-    return Observable.create( obs =>
-      this.db.collection<Product>('Products').add(
+    return from(
+      this.db.collection('Products').add(
         {
           name: product.name,
           pictureId: product.pictureId
         }
-      ).then(data => {obs.next(data);
-      })
-        .catch(err => obs.error(err))
+      )
     ).pipe(
-      catchError(error => {
-        if (error.status === 401 || error.status === 403) {
-          // handle error
-        }
-        return throwError(error);
-      }),
       map(productRef => {
-        //product.id = productRef.id;
+        product.id = productRef.id;
         return product;
       })
     );
-
-
   }
+
+
 }
 

@@ -50,4 +50,9 @@ export class FileService {
       })
     );
   }
+
+  getFileUrl(id: string): Observable<any> {
+    return this.storage.ref('product-pictures/' + id)
+      .getDownloadURL();
+  }
 }

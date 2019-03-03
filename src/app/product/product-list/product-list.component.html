@@ -1,12 +1,15 @@
 <div class="row" style="margin: 40px">
   <div *ngFor="let product of products | async" class="col s3">
+
+
     <mz-card
+
 
       [horizontal]="true">
 
       <mz-card-title>
+        <img [src]="product.url" *ngIf="product.url" style="width: 96px; height: 96px;">
         {{product.name}}
-        {{product.pictureId}}
       </mz-card-title>
       <mz-card-content>
         Very good coffee, much expensive
@@ -32,10 +35,14 @@
   <button mz-button style="background-color: limegreen">
     <i mz-icon-mdi [icon]="'cart-plus'"></i>
   </button>
-  <input class="filechooser" type="file" (change)="uploadFile($event)">
+  <input class="filechooser" type="file" (change)="uploadFile($event)" accept="image/*">
 
 
 
 </form>
+<image-cropper
+  [imageChangedEvent]="imageChangedEvent"  format="png"
+               (imageCropped)="imageCropped($event)">
+</image-cropper>
 
 
