@@ -18,11 +18,13 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     MessageComponent,
     WelcomeComponent,
+
 
   ],
   imports: [

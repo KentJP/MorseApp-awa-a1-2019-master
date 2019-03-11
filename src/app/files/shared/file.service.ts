@@ -14,25 +14,21 @@ export class FileService {
   constructor(private storage: AngularFireStorage, private db: AngularFirestore) { }
 
   upload(file: File): Observable<FileMeta> {
-    return this.addFileMetadata(
-      {
-        name: file.name,
-        type: file.type,
-        size: file.size,
-        lastModified: file.lastModified
-      }
-    ).pipe(
-      switchMap(fileMeta => {
+        const uniqueId = this.db.createId();
         return defer(() =>
-          this.storage.ref('product-pictures/' + fileMeta.id)
-            .put(file)
+          this.storage.ref('product-pictures/' + uniqueId)
+            .put(file, {
+              customMetadata:{
+                originalName: file.name
+              }
+            })
             .then()
         ).pipe(
           map(fileRef => {
-            return fileMeta;
+            fileRef.id = uniqueId;
+            return fileRef;
           })
-        );
-      })
+
     );
   }
 

@@ -9,6 +9,7 @@ import {FilesModule} from '../files/files.module';
 import {MzButtonModule, MzCardModule, MzIconMdiModule, MzIconModule, MzInputModule} from 'ngx-materialize';
 import {ImageCropperModule} from 'ngx-image-cropper';
 
+
 @NgModule({
   declarations: [ProductListComponent],
   imports: [
@@ -22,7 +23,8 @@ import {ImageCropperModule} from 'ngx-image-cropper';
     MzIconModule,
     MzIconMdiModule,
     MzInputModule,
-    ImageCropperModule
+    ImageCropperModule,
+
   ]
 })
 export class ProductModule { }
